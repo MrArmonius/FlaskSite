@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+<!DOCTYPE html>
+{% block head %}
+<link rel="stylesheet" href="./static/dropzone/dropzone.css" type="text/css"/>
+{#<script src="./static/dropzone/dropzone.js" type="text/javascript"></script>#}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.js" type="text/javascript"></script>
+
+
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container-lg my-4">
+
+			<div class="card">
+				<div class="card-header">
+				<h3 class="title">Upload Dropzone Flask</h3>
+			</div>
+				<div class="card-body">
+					<h2 class="tcard-title text-center">Upload</h2>
+					<p class="text-center"> Mettez vos fichiers pour les télécharger</p>
+				<div class="row">
+					<div class="col-10 mx-auto">
+					<div class="dropzone dz-clickable" id="demo-upload">
+
+
+					</div>
+				</div>
+				</div>
+				</div>
+			</div>
+			<div class="files mx-auto my-4 dropzone-previews" id="previews">
+				<div id="template" class="card">
+					<div class="row row-no-margin">
+					<div class="col-lg-2">
+						<img class="card-img-top" data-dz-thumbnail alt ="Card image" style="width:100%"/>
+					</div>
+
+					<div class="col-lg-10">
+					<div>
+						<p class="name" data-dz-name></p>
+						<strong class="error text-danger" data-dz-errormessage></strong>
+					</div>
+					<div class="mr-2">
+						<p class="size" data-dz-size></p>
+						<div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+							<div class="progress-bar progress-bar-success" style="width:0%;" data-dz-uploadprogress></div>
+						</div>
+					</div>
+
+						<div>
+							<button class="btn btn-primary start">
+								<span>Start</span>
+							</button>
+							<button data-dz-remove class="btn btn-warning text-white cancel">
+								<span>Cancel</span>
+							</button>
+							<button data-dz-remove class="btn btn-danger delete" style="display: none">
+
+								<span>Delete</span>
+							</button>
+						</div>
+					</div>
+					</div>
+					</div>
+				</div>
+
+			<div class="mx-auto my-4">
+
+				{% for file in files %}
+				<div class="card">
+					<img src="{{ url_for('upload.upload_f', filename=file) }}" style="width: 64px">
+					<p>{{ url_for('upload.upload_f', filename=file) }} </p>
+				</div>
+
+				{% endfor %}
+			</div>
+		<script src="./static/dropzone/dropzone-config.js" type="text/javascript"></script>
+	</div>
+
+
+
+
+	{% endblock %}
