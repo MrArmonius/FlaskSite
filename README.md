@@ -4,6 +4,7 @@ Repository of my website on Flask
 The default user is:
 email: a@be
 password: a
+
 The function to register works well.
 
 ## Run environnement python to run Website
@@ -21,6 +22,8 @@ For this, you use this command:
 . venv/bin/activate
 ```
 venv is folder's name defined beyond this section.
+
+
 ## Launch your webServer !
 To launch the server you need to export 2 global variables to Flask:
 ```
@@ -28,7 +31,7 @@ export FLASK_APP=project
 export FLASK_ENV=development
 ```
 The first one is the folder's name where all your project is.
-The second one is the mod that you want launch. We are in devolpment so we can see all reports features form the bugs or problems.
+The second one is the mod that you want launch. We are in development so we can see all reports features from the bugs or problems.
 Now we need to launch the webserver.
 ```
 flask run
