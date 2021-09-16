@@ -5,16 +5,16 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="./static/css/bootstrap/bootstrap.min.css">
+	<link rel="stylesheet" href="./static/css/base.css">
+	<script src="./static/js/Bootstrap5.0/bootstrap.bundle.min.js"></script>
     <script src="https://kit.fontawesome.com/4379c81596.js" crossorigin="anonymous"></script>
     <title>Flask Auth Example</title>
     {% block head %}
     {% endblock %}
 </head>
 
-<body style="height: 1500px; background-color: #F3F3F3">
+<body style="background-color: #F3F3F3">
 	<div class="container-fluid">
 	<br>
 	<h3>Sticky Navbar</h3>
@@ -25,18 +25,21 @@
 	   <div class="container-fluid">
 		<!-- BRAND -->
 		<div class="navbar-header">
-		<a class="navbar-brand" href="{{ url_for('main.index') }}"> Home</a>
+		<a class="navbar-brand" href="{{ url_for('main.index') }}">
+			<img src="/static/photo/bootstrap-logo.svg" width="40" height="30" class="d-inline-block align-top" alt="">
+			Bootstrap
+		</a>
 		</div>
 
 		<!-- Toggler/collapsible Button -->
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 
 
 		<!-- Navbar Links -->
 		<div class="collapse navbar-collapse w-100 order-3 dual-collapse2" id="collapsibleNavbar">
-			<ul class="nav navbar-nav ml-auto">
+			<ul class="nav navbar-nav">
 				{% if current_user.is_authenticated %}
 				<li class="nav-item">
 					<a class="nav-link" href="{{ url_for('main.profile') }}">Profile</a>
@@ -44,9 +47,20 @@
 				<li class="nav-item">
 					<a class="nav-link" href="{{ url_for('upload.upload_index') }}">Upload</a>
 				</li>
+				{% endif %}
 				<li class="nav-item">
-					<a class="nav-link" href="{{ url_for('auth.logout') }}">Logout</a>
+					<a class="nav-link" href="#">Informations</a>
 				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">About us</a>
+				</li>
+			</ul>
+			<ul class="nav navbar-nav ms-auto">
+				{% if current_user.is_authenticated %}
+				<li class="nav-item">
+					<a class="nav-link" href="{{ url_for('auth.logout') }}"><i class="fas fa-sign-in-alt"></i> Logout</a>
+				</li>
+			
 				{% else %}
 				<li class="nav-item">
 					<a class="nav-link" href="{{ url_for('auth.signup_post') }}"><i class="fas fa-user"></i> Sign Up</a>
@@ -57,13 +71,6 @@
 				{% endif %}
 			</ul>
 		</div>
-		{% if current_user.is_authenticated %}
-		<ul class="nav navbar-nav mr-auto">
-			<li class="nav-item">
-					<a class="nav-link" href="{{ url_for('upload.upload_index') }}">Upload</a>
-				</li>
-		</ul>
-		{% endif %}
 	    </div>
 	</nav>
 	<div class="container-fluid">
