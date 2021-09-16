@@ -38,7 +38,8 @@ flask run
 ```
 ## Connect to your webSite
 You can use any web browser.
-The address IP is your localhost and the port is 5000.
+The address IP is your localhost and the port is 5000. The option `--host=0.0.0.0` allows all ip adress in your LAN to have an acces on your webserver.
+You can connect at your WebServer via a browser with this address: `https://{local address IP of your webserver}:5000`
 ```
 flask run
 ```
