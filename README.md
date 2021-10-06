@@ -60,3 +60,12 @@ app = Flask(__name__)
 if __name__ == '__main__':
     app.run(host="localhost", port=8000, debug=True)
 ```
+
+## Open your dev at your network
+
+Dev server flask isn't secure, so don't open it at the world. Only private network wellknown from you.
+You need to use the option `--host=0.0.0.0`, `0.0.0.0` is a special value which allows all computers on your network to accede at your server.
+So when you launch Flask:
+```
+flask run --host=0.0.0.0
+```
