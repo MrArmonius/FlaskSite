@@ -12,8 +12,10 @@ var myDropzone = new Dropzone('#demo-upload', {
   thumbnailHeight: 1000,
   parallelUploads: 1,
   previewTemplate: previewTemplate,
+  acceptedFiles: '.stl', //This the extensions of files accepted. We can have <image/*, audio/*> or <.stl, .pdf>
   autoQueue: true, // Make sure the files aren't queued until manually added
   previewsContainer: "#previews", // Define the container to display the previews
+  maxFilesize: 10,  //10 MiB is here the max file upload size constraint
 });
 
 myDropzone.on("addedfile", function(file) {
@@ -28,20 +30,17 @@ myDropzone.on("sending", function(file) {
 
 myDropzone.on("removedfile", function(file) {
   var name = file.name;
-  $.ajax({
-    type: 'DELETE',
-    url: '/upload',
-    data: {id: name},
-    dataType: 'text'
-  });
+  var xhr = new XMLHttpRequest();
+  xhr.open("DELETE", "/upload", true);
+  xhr.setRequestHeader("Content-Type", "application/json");
+  xhr.send(JSON.stringify({'id': name}));
+  console.log("Succesful send request")
+  
 });
 
 myDropzone.on("complete", function(file) {
   file.previewElement.querySelector("#previews .start").style.display="none";
   file.previewElement.querySelector("#previews .cancel").style.display="none";
   file.previewElement.querySelector("#previews .delete").style.display="initial";
-  $.ajax({
-    type: 'GET',
-    url: '/profile'
-  });
+  
 });

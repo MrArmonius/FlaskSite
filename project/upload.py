@@ -25,7 +25,7 @@ def too_large(e):
 @login_required
 def upload_index():
 	files = os.listdir(os.path.join(current_app.config['UPLOAD_PATH'], current_user.get_id()))
-	return render_template('upload.html', files=files)
+	return render_template('upload.html', file=files)
 
 @upload.route('/upload', methods=['POST'])
 @login_required
@@ -39,7 +39,7 @@ def upload_post():
 @upload.route('/upload',  methods=['DELETE'])
 @login_required
 def upload_delete():
-	name = request.form.get("id")
+	name = request.json["id"]
 	os.remove(os.path.join(current_app.config['UPLOAD_PATH'], current_user.get_id(), secure_filename(name)))
 	return '', 202
 
