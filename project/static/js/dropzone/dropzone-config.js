@@ -12,7 +12,7 @@ var myDropzone = new Dropzone('#demo-upload', {
   thumbnailHeight: 1000,
   parallelUploads: 1,
   previewTemplate: previewTemplate,
-  acceptedFiles: '.stl', //This the extensions of files accepted. We can have <image/*, audio/*> or <.stl, .pdf>
+  acceptedFiles: '.jpg', //This the extensions of files accepted. We can have <image/*, audio/*> or <.stl, .pdf>
   autoQueue: true, // Make sure the files aren't queued until manually added
   previewsContainer: "#previews", // Define the container to display the previews
   maxFilesize: 10,  //10 MiB is here the max file upload size constraint

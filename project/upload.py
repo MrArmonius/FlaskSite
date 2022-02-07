@@ -7,7 +7,7 @@ import imghdr
 
 upload = Blueprint('upload', __name__)
 
-os.chdir(os.path.join(os.getcwd(), 'project/static'))
+
 
 def validate_image(stream):
 	header = stream.read(512)
