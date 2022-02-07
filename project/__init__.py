@@ -10,7 +10,7 @@ def create_app(test_config=None):
     app.config['SECRET_KEY'] = 'dev'
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    app.config['UPLOAD_PATH'] = 'project/static/upload/user'
+    app.config['UPLOAD_PATH'] = 'project/static/upload/user/'
 
     db.init_app(app)
 
@@ -33,7 +33,12 @@ def create_app(test_config=None):
     from .main import main as main_blueprint
     app.register_blueprint(main_blueprint)
 
+    # blueprint for dropzone page
     from .upload import upload as upload_blueprint
     app.register_blueprint(upload_blueprint)
+
+    # blueprint for visualize STL file
+    from .display import display as display_blueprint
+    app.register_blueprint(display_blueprint)
 
     return app
