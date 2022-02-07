@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+<!DOCTYPE html>
+{% block head %}
+<style type="text/css">
+    div.stlviewer { height: 1000px; }
+ </style>
+<script type=text/javascript> 
+	window.onload=function() {
+		STLViewerEnable("stlviewer");
+	 } 
+</script>
+<script src="./static/js/three/three.min.js"></script>
+<script src="./static/js/three/WebGL.js"></script>
+<script src="./static/js/three/STLLoader.js"></script>
+<script src="./static/js/three/OrbitControls.js"></script>
+<script src="./static/js/three/stlviewer.js"></script>
+
+{% endblock %}
+
+{% block content %}
+<div class=stlviewer data-src=/static/elf_bust_01.stl></div>
+{% endblock %}
