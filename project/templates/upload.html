@@ -79,7 +79,9 @@
 	</div>
 	<script src="./static/js/dropzone/dropzone-config.js" type="text/javascript"></script>
 	<div class="card">
-		<a class="btn btn-primary disabled" id="button_to_display" tabindex="-1" href="{{ url_for('display.display_index') }}" role="button" aria-disabled="true">Display</a>
+		<button type="button" class="btn btn-lg btn-primary" id="button_to_display" onclick="url_display()" disabled>Display</button>
+		<!--<a class="btn btn-primary disabled" id="button_to_display" tabindex="-1" href="{{ url_for('display.display_index') }}" role="button" aria-disabled="true">Display</a>
+		-->
 	</div>
 </div>
 

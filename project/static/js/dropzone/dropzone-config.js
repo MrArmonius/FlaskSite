@@ -37,7 +37,7 @@ myDropzone.on("removedfile", function(file) {
   console.log("Succesful send request")
   if (myDropzone.files.length == 0) {
     var button_link = document.getElementById("button_to_display");
-    button_link.className = button_link.className + " disabled";
+    button_link.disabled=true;
   }
   
 });
@@ -48,7 +48,25 @@ myDropzone.on("complete", function(file) {
   file.previewElement.querySelector("#previews .delete").style.display="initial";
   if (myDropzone.files.length > 0) {
     var button_link = document.getElementById("button_to_display");
-    button_link.className = "btn btn-primary";
+    button_link.disabled=false;
   }
   
 });
+
+function url_display() {
+  var parameters = "?";
+  var first =true;
+  for (file of myDropzone.files) {
+    if (!first) {
+      parameters +="&";
+    }
+    parameters += "file=" + file.name;
+    first = false;
+  }
+  console.log(parameters);
+  var url = "/display" + parameters;
+
+  location.href=url;
+  
+  
+}

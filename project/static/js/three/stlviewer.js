@@ -30,28 +30,32 @@ function STLViewer(elem, model) {
     controls.autoRotateSpeed = .75;
 
     var scene = new THREE.Scene();
+    
+    scene.add(new THREE.HemisphereLight(0xffffff, 0x080820, 1.25));
 
-    scene.add(new THREE.HemisphereLight(0xffffff, 0x080820, 1.5));
+    const stlloader = new THREE.STLLoader();
 
-    (new THREE.STLLoader()).load(model, function (geometry) {
+    stlloader.load(model, function (geometry) {
         var material = new THREE.MeshPhongMaterial({ color: 0x248bfb, specular: 100, shininess: 100 });
         var mesh = new THREE.Mesh(geometry, material);
         scene.add(mesh);
 
         // Compute the middle
         var middle = new THREE.Vector3();
+        var size = new THREE.Vector3();
         geometry.computeBoundingBox();
         geometry.boundingBox.getCenter(middle);
+        geometry.boundingBox.getSize(size);
 
         // Center it
-        mesh.position.x = -1 * middle.x;
-        mesh.position.y = -1 * middle.y;
-        mesh.position.z = -1 * middle.z;
+        mesh.position.x = (-1 * middle.x);
+        mesh.position.y = (-1 * middle.y);
+        mesh.position.z = (-1 * middle.z);
 
         // Pull the camera away as needed
         var largestDimension = Math.max(geometry.boundingBox.max.x,
             geometry.boundingBox.max.y, geometry.boundingBox.max.z)
-        camera.position.z = largestDimension * 1.5;
+        camera.position.z = largestDimension * 1.75;
 
 
         var animate = function () {
@@ -61,4 +65,5 @@ function STLViewer(elem, model) {
         }; animate();
 
     });
+
 }

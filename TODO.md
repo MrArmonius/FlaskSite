@@ -1,3 +1,4 @@
 ## TODO Liste
-- Après l'upload créer la page visualisation du STL. Tuto Three.js + d'autres plugins https://tonybox.net/posts/simple-stl-viewer/
+- Après l'upload créer la page visualisation du STL. Tuto Three.js + d'autres plugins https://tonybox.net/posts/simple-stl-viewer/ Trouver un moyen de faire passer le nom des fichiers entre la page upload et display. Mettre un fond sur la scène de type Cura. Enlever l'auto-rotate. Pouvoir déplacer l'item dans la zone. Si Item dépasse du plateau, Renvoyer une matière grisaillée.
 - Importer Cura Engine, créer le fichier de configuration xml/json, lancer le moteur cura engine depuis le serveur et notifier l'avancement au serveur web.
+- Reduire nombre triangle d'un stl : https://kitware.github.io/vtk-examples/site/ https://pymesh.readthedocs.io/en/latest/mesh_processing.html#remeshing

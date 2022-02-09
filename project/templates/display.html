@@ -18,5 +18,9 @@
 {% endblock %}
 
 {% block content %}
-<div class=stlviewer data-src=/static/elf_bust_01.stl></div>
+	{% for ThreeD in ThreeDs %}
+		<div class=stlviewer data-src="{{ ThreeD }}"></div>
+		<p>{{ ThreeD }} </p>
+	{% endfor %}
+
 {% endblock %}
