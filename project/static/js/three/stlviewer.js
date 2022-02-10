@@ -30,6 +30,7 @@ function STLViewer(elem, model) {
     controls.autoRotateSpeed = .75;
 
     var scene = new THREE.Scene();
+    scene.background = new THREE.Color(0xf1f1f1);
     
     scene.add(new THREE.HemisphereLight(0xffffff, 0x080820, 1.25));
 
@@ -55,7 +56,7 @@ function STLViewer(elem, model) {
         // Pull the camera away as needed
         var largestDimension = Math.max(geometry.boundingBox.max.x,
             geometry.boundingBox.max.y, geometry.boundingBox.max.z)
-        camera.position.z = largestDimension * 1.75;
+        camera.position.z = largestDimension * 2;
 
 
         var animate = function () {
