@@ -3,8 +3,7 @@
 {% block head %}
 <style type="text/css">
 	div.stlviewer {
-		height: 500px;
-		width: 500px;
+		min-height: 400px;
 	}
 </style>
 <script type=text/javascript>
@@ -17,7 +16,7 @@
 <script src="./static/js/three/STLLoader.js"></script>
 <script src="./static/js/three/OrbitControls.js"></script>
 <script src="./static/js/three/stlviewer.js"></script>
-
+https://techsupport.ph/
 {% endblock %}
 
 {% block content %}
@@ -39,12 +38,11 @@
 							<li>test</li>
 						</ul>
 					</div>
-					<div class="col-sm-10">
-						{% for ThreeD in ThreeDs %}
-						<div class="stlviewer d-flex" data-src="{{ ThreeD }}"></div>
-						<p>{{ ThreeD }} </p>
-						{% endfor %}
+					{% for ThreeD in ThreeDs %}
+					<div class="col-sm-10 stlviewer" data-src="{{ ThreeD }}">
+						
 					</div>
+					{% endfor %}
 				</div>
 
 
