@@ -1,3 +1,5 @@
+var camera, controls
+
 function STLViewerEnable(classname) {
     var models = document.getElementsByClassName(classname);
     for (var i = 0; i < models.length; i++) {
@@ -10,7 +12,8 @@ function STLViewer(elem, model) {
 
 
     var renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    var camera = new THREE.PerspectiveCamera(70, elem.clientWidth / elem.clientHeight, 1, 1000);
+    camera = new THREE.PerspectiveCamera(90, elem.clientWidth / elem.clientHeight, 1, 1000);
+    camera.enableZoom;
     renderer.setSize(elem.clientWidth, elem.clientHeight);
     elem.appendChild(renderer.domElement);
 
@@ -20,12 +23,12 @@ function STLViewer(elem, model) {
         camera.updateProjectionMatrix();
     }, false);
 
-    var controls = new THREE.OrbitControls(camera, renderer.domElement);
+    controls = new THREE.OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
     controls.rotateSpeed = 0.5;
     controls.dampingFactor = 0.1;
-    controls.enableZoom = false;
-    controls.enablePan = false;
+    controls.enableZoom = true;
+    controls.enablePan = true;
     controls.autoRotate = true;
     controls.autoRotateSpeed = .75;
 
@@ -56,8 +59,13 @@ function STLViewer(elem, model) {
         // Pull the camera away as needed
         var largestDimension = Math.max(geometry.boundingBox.max.x,
             geometry.boundingBox.max.y, geometry.boundingBox.max.z)
-        camera.position.z = largestDimension * 2;
-
+        camera.position.z = largestDimension * 1.5;
+        console.log("x: ", geometry.boundingBox.max.x);
+        console.log("y: ", geometry.boundingBox.max.y);
+        console.log("z: ", geometry.boundingBox.max.z);
+        console.log("LD: ", largestDimension);
+        
+        controls.saveState();
 
         var animate = function () {
             requestAnimationFrame(animate);
@@ -67,4 +75,8 @@ function STLViewer(elem, model) {
 
     });
 
+}
+
+function resetPositionCamera() {
+    controls.reset();
 }
