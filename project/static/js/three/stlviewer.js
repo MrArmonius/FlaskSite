@@ -64,6 +64,10 @@ function STLViewer(elem, model) {
         console.log("y: ", geometry.boundingBox.max.y);
         console.log("z: ", geometry.boundingBox.max.z);
         console.log("LD: ", largestDimension);
+
+        document.getElementById("x_length").textContent += Math.round((geometry.boundingBox.max.x+Number.EPSILON)*100)/100;
+        document.getElementById("y_length").textContent += Math.round((geometry.boundingBox.max.y+Number.EPSILON)*100)/100;
+        document.getElementById("z_length").textContent += Math.round((geometry.boundingBox.max.z+Number.EPSILON)*100)/100;
         
         controls.saveState();
 
