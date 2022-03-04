@@ -8,10 +8,7 @@ display = Blueprint('display', __name__)
 @display.route('/display', methods=['GET'])
 @login_required
 def display_index(): #Get the args from URL parameters for the files names. Flask uses werkzeug MultiDict so we can have sevral value for the same key
-    files = request.args.getlist('file')
-    name = []
-    filenames = []
-    for file in files:
-        name.append(os.path.join("/static/upload/user/", current_user.get_id()) + "/" + secure_filename(file))
-        filenames.append(secure_filename(file).split(".")[0])
-    return render_template('display.html', ThreeDs=name, Filename=filenames, Username=current_user.name)
+    file = request.args.get('file')
+    name = os.path.join("/static/upload/user/", current_user.get_id()) + "/" + secure_filename(file)
+    filename = secure_filename(file).split(".")[0]
+    return render_template('display.html', ThreeD=name, Filename=filename, Username=current_user.name)
