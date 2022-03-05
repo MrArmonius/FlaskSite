@@ -10,3 +10,7 @@
         width: 100%;
     }
 }
+
+.card-disabled {
+    opacity: 0.4;
+}

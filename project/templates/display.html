@@ -12,6 +12,7 @@
 <script src="./static/js/three/STLLoader.js"></script>
 <script src="./static/js/three/OrbitControls.js"></script>
 <script src="./static/js/three/stlviewer.js"></script>
+<script src="./static/js/Site/display/display.js"></script>
 {% endblock %}
 
 {% block content %}
@@ -44,7 +45,8 @@
 					</div>
 				</div>
 				<div class="row pt-3 pb-3 pt-md-2 pb-md-2 mt-md-2 mb-md-2">
-					<div class="col_s7_l9">
+					<div class="col-sm-8 col-xl-6"><span></span></div>
+					<div class="col-sm-4 col-xl-5 mx-3">
 						<span id="x_length">W:</span>
 						<span>mm x </span>
 						<span id="y_length">L:</span>
@@ -58,6 +60,42 @@
 		<div class="col-sm-6">
 			<div class="card">
 				<div class="card-body">
+					<div class="row pt-3 pb-3 pt-md-2 pb-md-2 mt-md-2 mb-md-2">
+						<div class="col p-2">
+							<div id="card-standard" class="card border-primary card-disabled">
+								<a id="card-button-standard" onclick="card_choice(this.id)" class="card-block btn stretched-link text-decoration-none"></a>
+								<div class="card-body">
+									
+									<h3 class="card-title text-center text-primary text-bold">
+										23,77 €
+										<br>
+										<small class="text-muted">Expédié le <br> 10 mars 2045</small>
+									</h3>
+								
+								</div>
+								<div class="card-footer bg-primary text-white text-center">
+									<b style="font-size: 1.5em;">Standard</b>
+								</div>
+							</div>
+						</div>
+						<div class="col p-2">
+							<div id="card-express" class="card border-success">
+								<a id="card-button-express" onclick="card_choice(this.id)" class="card-block btn stretched-link text-decoration-none"></a>
+								<div class="card-body">
+									
+									<h3 class="card-title text-center text-primary text-bold">
+										42,77 €
+										<br>
+										<small class="text-muted">Expédié le <br> 8 mars 2045</small>
+									</h3>
+								
+								</div>
+								<div class="card-footer bg-success text-white text-center">
+									<b style="font-size: 1.5em;">Express</b>
+								</div>
+							</div>
+						</div>
+					</div>
 					<h5 class="card-title">Special title treatment</h5>
 					<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
 					<button onclick="resetPositionCamera()" class="btn btn-primary">Reset position</a>
