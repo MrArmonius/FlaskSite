@@ -34,7 +34,7 @@ function STLViewer(elem, model) {
 
     var scene = new THREE.Scene();
     scene.background = new THREE.Color(0xf1f1f1);
-    
+
     scene.add(new THREE.HemisphereLight(0xffffff, 0x080820, 1.25));
 
     const stlloader = new THREE.STLLoader();
@@ -60,15 +60,14 @@ function STLViewer(elem, model) {
         var largestDimension = Math.max(geometry.boundingBox.max.x,
             geometry.boundingBox.max.y, geometry.boundingBox.max.z)
         camera.position.z = largestDimension * 1.5;
-        console.log("x: ", geometry.boundingBox.max.x);
-        console.log("y: ", geometry.boundingBox.max.y);
+        console.log("x: ", geometry.boundingBox.max.x * 2);
+        console.log("y: ", geometry.boundingBox.max.y * 2);
         console.log("z: ", geometry.boundingBox.max.z);
         console.log("LD: ", largestDimension);
 
-        document.getElementById("x_length").textContent += Math.round((geometry.boundingBox.max.x+Number.EPSILON)*100)/100;
-        document.getElementById("y_length").textContent += Math.round((geometry.boundingBox.max.y+Number.EPSILON)*100)/100;
-        document.getElementById("z_length").textContent += Math.round((geometry.boundingBox.max.z+Number.EPSILON)*100)/100;
-        
+        setDimension((Math.round((geometry.boundingBox.max.x + Number.EPSILON) * 100) / 100) * 2, (Math.round((geometry.boundingBox.max.y + Number.EPSILON) * 100) / 100) * 2,
+            Math.round((geometry.boundingBox.max.z + Number.EPSILON) * 100) / 100);
+
         controls.saveState();
 
         var animate = function () {
@@ -78,6 +77,27 @@ function STLViewer(elem, model) {
         }; animate();
 
     });
+
+}
+
+function setDimension(x_length, y_length, z_length) {
+    var x_length_elements = document.getElementsByClassName("x_length");
+    var y_length_elements = document.getElementsByClassName("y_length");
+    var z_length_elements = document.getElementsByClassName("z_length");
+
+
+    for (let element of x_length_elements) {
+        
+        element.textContent += x_length;
+    }
+
+    for (let element of y_length_elements) {
+        element.textContent += y_length;
+    }
+
+    for (let element of z_length_elements) {
+        element.textContent += z_length;
+    }
 
 }
 

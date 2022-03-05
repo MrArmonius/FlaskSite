@@ -19,7 +19,7 @@
 <div class="container">
 	<div class="row p-3 p-md-3 m-md-3">
 		<div class="col-sm-6">
-			<div class="card card-topping-small">
+			<div class="card card-topping-small" style="height: 100%;">
 				<div class="row p-3 pt-md-2 pb-md-2 mt-md-2 mb-md-2">
 					<div class="col_s7_l9">
 						<span>{{ Filename }}</span>
@@ -32,7 +32,8 @@
 					<div class="col-sm-3" style="padding-right:0;">
 						<ul class="list-group">
 							<li class="list-group-item active">Affichage</li>
-							<button type="button" onclick="resetPositionCamera()" class="list-group-item list-group-item-action">Reset</button>
+							<button type="button" onclick="resetPositionCamera()"
+								class="list-group-item list-group-item-action">Reset</button>
 							<li class="list-group-item">test</li>
 							<li class="list-group-item">test</li>
 							<li class="list-group-item">test</li>
@@ -47,31 +48,32 @@
 				<div class="row pt-3 pb-3 pt-md-2 pb-md-2 mt-md-2 mb-md-2">
 					<div class="col-sm-8 col-xl-6"><span></span></div>
 					<div class="col-sm-4 col-xl-5 mx-3">
-						<span id="x_length">W:</span>
+						<span class="x_length">W:</span>
 						<span>mm x </span>
-						<span id="y_length">L:</span>
+						<span class="y_length">L:</span>
 						<span>mm x </span>
-						<span id="z_length">H:</span>
+						<span class="z_length">H:</span>
 						<span>mm</span>
 					</div>
 				</div>
 			</div>
 		</div>
 		<div class="col-sm-6">
-			<div class="card">
+			<div class="card" style="height: 100%;">
 				<div class="card-body">
 					<div class="row pt-3 pb-3 pt-md-2 pb-md-2 mt-md-2 mb-md-2">
 						<div class="col p-2">
 							<div id="card-standard" class="card border-primary card-disabled">
-								<a id="card-button-standard" onclick="card_choice(this.id)" class="card-block btn stretched-link text-decoration-none"></a>
+								<a id="card-button-standard" onclick="card_choice(this.id)"
+									class="card-block btn stretched-link text-decoration-none p-0 m-0"></a>
 								<div class="card-body">
-									
+
 									<h3 class="card-title text-center text-primary text-bold">
-										23,77 €
+										<b>23,77 €</b>
 										<br>
 										<small class="text-muted">Expédié le <br> 10 mars 2045</small>
 									</h3>
-								
+
 								</div>
 								<div class="card-footer bg-primary text-white text-center">
 									<b style="font-size: 1.5em;">Standard</b>
@@ -80,15 +82,16 @@
 						</div>
 						<div class="col p-2">
 							<div id="card-express" class="card border-success">
-								<a id="card-button-express" onclick="card_choice(this.id)" class="card-block btn stretched-link text-decoration-none"></a>
+								<a id="card-button-express" onclick="card_choice(this.id)"
+									class="card-block btn stretched-link text-decoration-none p-0 m-0	"></a>
 								<div class="card-body">
-									
-									<h3 class="card-title text-center text-primary text-bold">
-										42,77 €
+
+									<h3 class="card-title text-center text-success text-bold">
+										<b>42,77 €</b>
 										<br>
 										<small class="text-muted">Expédié le <br> 8 mars 2045</small>
 									</h3>
-								
+
 								</div>
 								<div class="card-footer bg-success text-white text-center">
 									<b style="font-size: 1.5em;">Express</b>
@@ -96,9 +99,52 @@
 							</div>
 						</div>
 					</div>
-					<h5 class="card-title">Special title treatment</h5>
-					<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-					<button onclick="resetPositionCamera()" class="btn btn-primary">Reset position</a>
+					<div class="row pt-3 pt-md-2 mt-md-2">
+						<div class="col">
+							<div class="card bg-light">
+								<div class="card-body">
+									<h2 class="card-title text-center">Votre sélection</h2>
+									<hr style="height:3px;opacity:75%;width: 100%; margin-top: 0.5em;margin-bottom: 0.5em;"
+										class="mx-auto">
+									<table class="m-3">
+										<tbody>
+											<tr>
+												<th>Matière</th>
+												<td class="px-4 py-2 text-muted">Coucou</td>
+											</tr>
+											<tr>
+												<th>Taille</th>
+												<td class="px-4 py-2 text-muted"><span class="x_length"></span> x <span
+														class="y_length"></span> x <span class="z_length"></span> mm
+												</td>
+											</tr>
+											<tr>
+												<th>Prix</th>
+												<td class="px-4 py-2 text-muted">Coucou</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<div class="card-footer bg-primary text-white text-center btn" onclick="">
+									<div class="row py-1 mx-2 justify-content-center">
+										<div class="col-md-auto">
+											<svg xmlns="http://www.w3.org/2000/svg" width="1.75em" height="1.75em"
+												fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16">
+												<path
+													d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+											</svg>
+										</div>
+										<div class="col-md-auto">
+											<b style="font-size: 1.5em;">Panier</b>
+										</div>
+										
+
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
