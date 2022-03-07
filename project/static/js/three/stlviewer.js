@@ -12,7 +12,7 @@ function STLViewer(elem, model) {
 
 
     var renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    camera = new THREE.PerspectiveCamera(90, elem.clientWidth / elem.clientHeight, 1, 1000);
+    camera = new THREE.PerspectiveCamera(70, elem.clientWidth / elem.clientHeight, 1, 1000);
     camera.enableZoom;
     renderer.setSize(elem.clientWidth, elem.clientHeight);
     elem.appendChild(renderer.domElement);
@@ -57,16 +57,23 @@ function STLViewer(elem, model) {
         mesh.position.z = (-1 * middle.z);
 
         // Pull the camera away as needed
-        var largestDimension = Math.max(geometry.boundingBox.max.x,
-            geometry.boundingBox.max.y, geometry.boundingBox.max.z)
-        camera.position.z = largestDimension * 1.5;
-        console.log("x: ", geometry.boundingBox.max.x * 2);
-        console.log("y: ", geometry.boundingBox.max.y * 2);
-        console.log("z: ", geometry.boundingBox.max.z);
+        
+
+        let bound_x = (geometry.boundingBox.max.x+Math.abs(geometry.boundingBox.min.x));
+        let bound_y = (geometry.boundingBox.max.y+Math.abs(geometry.boundingBox.min.y));
+        let bound_z = (geometry.boundingBox.max.z+Math.abs(geometry.boundingBox.min.z));
+
+        var largestDimension = Math.max(bound_x,
+            bound_y, bound_z);
+        camera.position.z = largestDimension * 1;
+
+        console.log("x: ", bound_x);
+        console.log("y: ", bound_y);
+        console.log("z: ", bound_z);
         console.log("LD: ", largestDimension);
 
-        setDimension((Math.round((geometry.boundingBox.max.x + Number.EPSILON) * 100) / 100) * 2, (Math.round((geometry.boundingBox.max.y + Number.EPSILON) * 100) / 100) * 2,
-            Math.round((geometry.boundingBox.max.z + Number.EPSILON) * 100) / 100);
+        setDimension((Math.ceil((bound_x + Number.EPSILON) * 100) / 100), (Math.ceil((bound_y + Number.EPSILON) * 100) / 100),
+            Math.ceil((bound_z + Number.EPSILON) * 100) / 100);
 
         controls.saveState();
 
