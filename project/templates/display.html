@@ -23,8 +23,8 @@
 			<div class="card card-topping-small" style="height: 100%;">
 				<div class="row p-3 pt-md-2 pb-md-2 mt-md-2 mb-md-2">
 					<div class="col_s7_l9">
-						<span>{{ Filename }}</span>
-						<span> par </span>
+						<span><b>{{ Filename }}</b></span>
+						<span class="text-muted"> par </span>
 						<span>{{ Username }}</span>
 
 					</div>
@@ -33,13 +33,13 @@
 					<div class="col-sm-3" style="padding-right:0;">
 						<ul class="list-group">
 							<li class="list-group-item active">Affichage</li>
+							<li class="list-group-item">Gcode</li>
+							<li class="list-group-item">test</li>
+							<li class="list-group-item">test</li>
+							<li class="list-group-item">test</li>
+							<li class="list-group-item">test</li>
 							<button type="button" onclick="resetPositionCamera()"
-								class="list-group-item list-group-item-action">Reset</button>
-							<li class="list-group-item">test</li>
-							<li class="list-group-item">test</li>
-							<li class="list-group-item">test</li>
-							<li class="list-group-item">test</li>
-							<li class="list-group-item">test</li>
+								class="list-group-item list-group-item-action btn-primary-hover">Reset</button>
 						</ul>
 					</div>
 					<div class="col-sm-9" style="padding-left:0;">
@@ -47,14 +47,16 @@
 					</div>
 				</div>
 				<div class="row pt-3 pb-3 pt-md-2 pb-md-2 mt-md-2 mb-md-2">
-					<div class="col-sm-8 col-xl-6"><span></span></div>
-					<div class="col-sm-4 col-xl-5 mx-3">
-						<span class="x_length">W:</span>
-						<span>mm x </span>
-						<span class="y_length">L:</span>
-						<span>mm x </span>
-						<span class="z_length">H:</span>
-						<span>mm</span>
+					<div class="col">
+						<div class="mx-2 px-2 text-end">
+							<span class="x_length">W:</span>
+							<span>mm x </span>
+							<span class="y_length">L:</span>
+							<span>mm x </span>
+							<span class="z_length">H:</span>
+							<span>mm</span>
+						</div>
+						
 					</div>
 				</div>
 			</div>
