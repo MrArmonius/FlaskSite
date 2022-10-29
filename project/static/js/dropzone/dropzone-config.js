@@ -16,6 +16,7 @@ var myDropzone = new Dropzone('#demo-upload', {
   autoQueue: true, // Make sure the files aren't queued until manually added
   previewsContainer: "#previews", // Define the container to display the previews
   maxFilesize: 25,  //10 MiB is here the max file upload size constraint
+  timeout: 999999,
 });
 
 myDropzone.on("addedfile", function(file) {
@@ -26,6 +27,9 @@ myDropzone.on("addedfile", function(file) {
 myDropzone.on("sending", function(file) {
   // And disable the start button
   file.previewElement.querySelector(".start").setAttribute("disabled", "disabled");
+
+  //Change thumbnail default
+    myDropzone.emit("thumbnail", file, "static/photo/stl.jpg")
 });
 
 myDropzone.on("removedfile", function(file) {
@@ -50,7 +54,7 @@ myDropzone.on("complete", function(file) {
     var button_link = document.getElementById("button_to_display");
     button_link.disabled=false;
   }
-  
+  myDropzone.emit("thumbnail", file, "static/upload/user/1/template/ElfRanger28mm_v2.jpeg")
 });
 
 function url_display() {

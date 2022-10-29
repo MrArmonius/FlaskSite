@@ -24,8 +24,13 @@ def too_large(e):
 @upload.route('/upload', methods=['GET'])
 @login_required
 def upload_index():
-	files = os.listdir(os.path.join(current_app.config['UPLOAD_PATH'], current_user.get_id()))
-	return render_template('upload.html', files=files)
+	files = os.listdir(os.path.join(current_app.config['UPLOAD_PATH'], current_user.get_id(), "template"))
+	files_name = []
+	for name in files:
+		if name[-4:] == "jpeg":
+			files_name.append(os.path.join("../static/upload/user", current_user.get_id(), "template", name))
+	
+	return render_template('upload.html', files=files_name)
 
 @upload.route('/upload', methods=['POST'])
 @login_required

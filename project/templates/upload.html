@@ -33,7 +33,7 @@
 		<div id="template" class="card">
 			<div class="row row-no-margin">
 				<div class="col-lg-2">
-					<img class="card-img-top" data-dz-thumbnail alt="Card image" style="width:100%" />
+					<img class="card-img-top" data-dz-thumbnail src="" alt="Card image" style="width:100%" />
 				</div>
 
 				<div class="col-lg-10">
@@ -71,8 +71,8 @@
 
 		{% for file in files %}
 		<div class="card">
-			<img src="{{ url_for('upload.upload_f', filename=file) }}" style="width: 64px">
-			<p>{{ url_for('upload.upload_f', filename=file) }} </p>
+			<img src="{{ file }}" style="width: 64px">
+			<p>{{ file }} </p>
 		</div>
 
 		{% endfor %}
