@@ -1,4 +1,4 @@
-var camera, controls
+var camera, controls, mesh
 
 function STLViewerEnable(classname) {
     var models = document.getElementsByClassName(classname);
@@ -41,7 +41,7 @@ function STLViewer(elem, model) {
 
     stlloader.load(model, function (geometry) {
         var material = new THREE.MeshPhongMaterial({ color: 0x248bfb, specular: 100, shininess: 100 });
-        var mesh = new THREE.Mesh(geometry, material);
+        mesh = new THREE.Mesh(geometry, material);
         scene.add(mesh);
 
         // Compute the middle
@@ -56,6 +56,8 @@ function STLViewer(elem, model) {
         mesh.position.y = (-1 * middle.y);
         mesh.position.z = (-1 * middle.z);
 
+
+        
         // Pull the camera away as needed
         
 
@@ -77,6 +79,8 @@ function STLViewer(elem, model) {
 
         controls.saveState();
 
+        
+
         var animate = function () {
             requestAnimationFrame(animate);
             controls.update();
@@ -84,7 +88,6 @@ function STLViewer(elem, model) {
         }; animate();
 
     });
-
 }
 
 function setDimension(x_length, y_length, z_length) {
@@ -110,4 +113,9 @@ function setDimension(x_length, y_length, z_length) {
 
 function resetPositionCamera() {
     controls.reset();
+}
+
+function changeColorMesh(color_hex) {
+    // Change color material mesh
+    mesh.material.color.setHex(color_hex);
 }
