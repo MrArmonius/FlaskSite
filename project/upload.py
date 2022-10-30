@@ -5,17 +5,19 @@ from werkzeug.utils import secure_filename
 import os
 import imghdr
 
+from .preview import generate_preview
+
 upload = Blueprint('upload', __name__)
 
 
 
-def validate_image(stream):
-	header = stream.read(512)
-	stream.seek(0)
-	format = imghdr.what(None, header)
-	if not format:
-		return None
-	return '.' + (format if format != 'jpeg' else 'jpg')
+# def validate_image(stream):
+# 	header = stream.read(512)
+# 	stream.seek(0)
+# 	format = imghdr.what(None, header)
+# 	if not format:
+# 		return None
+# 	return '.' + (format if format != 'jpeg' else 'jpg')
 
 @upload.app_errorhandler(413)
 def too_large(e):
@@ -28,7 +30,7 @@ def upload_index():
 	files_name = []
 	for name in files:
 		if name[-4:] == "jpeg":
-			files_name.append(os.path.join("../static/upload/user", current_user.get_id(), "template", name))
+			files_name.append(os.path.join(current_app.config['PATH_USER'], current_user.get_id(), "template", name))
 	
 	return render_template('upload.html', files=files_name)
 
@@ -37,7 +39,9 @@ def upload_index():
 def upload_post():
 	for key, f in request.files.items():
 		if key.startswith('file'):
-			f.save(os.path.join(current_app.config['UPLOAD_PATH'], current_user.get_id(), secure_filename(f.filename)))
+			path = os.path.join(current_app.config['UPLOAD_PATH'], current_user.get_id(), secure_filename(f.filename))
+			f.save(path)
+			generate_preview(path, secure_filename(f.filename))
 			return '', 202
 	return "Image incorrect", 400
 
@@ -51,6 +55,5 @@ def upload_delete():
 @upload.route('/thumbnail/<filename>')
 @login_required
 def upload_f(filename):
-	#return redirect(os.path.join(current_app.config['UPLOAD_PATH'], current_user.get_id(), filename), code=301)
-	return redirect(os.path.join(current_app.config['UPLOAD_PATH'], current_user.get_id(), filename), code=301)
-	#return send_from_directory(current_app['UPLOAD_PATH'], filename)
+	filename_secure = secure_filename(filename) + '.jpeg'
+	return os.path.join(current_app.config['PATH_USER'], current_user.get_id(), "template", filename_secure)

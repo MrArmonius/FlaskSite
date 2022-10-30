@@ -1,6 +1,8 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
+
+import os
 # init SQLAlchemy so we can use it later in our models
 db = SQLAlchemy()
 
@@ -10,7 +12,9 @@ def create_app(test_config=None):
     app.config['SECRET_KEY'] = 'dev'
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    app.config['UPLOAD_PATH'] = 'project/static/upload/user/'
+    app.config['PATH_USER'] = 'static/upload/user/'
+    app.config['UPLOAD_PATH'] = os.path.join('project', app.config['PATH_USER'])
+    
 
     db.init_app(app)
 

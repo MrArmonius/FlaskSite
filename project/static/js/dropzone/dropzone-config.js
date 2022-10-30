@@ -16,6 +16,7 @@ var myDropzone = new Dropzone('#demo-upload', {
   autoQueue: true, // Make sure the files aren't queued until manually added
   previewsContainer: "#previews", // Define the container to display the previews
   maxFilesize: 25,  //10 MiB is here the max file upload size constraint
+  maxFiles: 1, //Limit to one file
   timeout: 999999,
 });
 
@@ -29,7 +30,7 @@ myDropzone.on("sending", function(file) {
   file.previewElement.querySelector(".start").setAttribute("disabled", "disabled");
 
   //Change thumbnail default
-    myDropzone.emit("thumbnail", file, "static/photo/stl.jpg")
+  myDropzone.emit("thumbnail", file, "static/photo/stl.jpg")
 });
 
 myDropzone.on("removedfile", function(file) {
@@ -54,8 +55,31 @@ myDropzone.on("complete", function(file) {
     var button_link = document.getElementById("button_to_display");
     button_link.disabled=false;
   }
-  myDropzone.emit("thumbnail", file, "static/upload/user/1/template/ElfRanger28mm_v2.jpeg")
+  var name_file = file.name.substring(0, file.name.length - 4)
+  get_thumbnail_link(name_file, file)
 });
+
+function get_thumbnail_link(file_name, file) {
+
+  var path = "/thumbnail/" + file_name;
+  send_XML_request(response_thumbnail,path, file);
+}
+
+function response_thumbnail(response, file) {
+  myDropzone.emit("thumbnail", file, response)
+}
+
+function send_XML_request(function_response, path, extra_args, type="GET") {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+       // Typical action to be performed when the document is ready:
+       function_response(xhttp.responseText, extra_args);
+    }
+  };
+  xhttp.open(type, path, true);
+  xhttp.send();
+}
 
 function url_display() {
   var parameters = "?";
