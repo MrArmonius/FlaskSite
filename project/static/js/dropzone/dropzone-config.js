@@ -15,7 +15,7 @@ var myDropzone = new Dropzone('#demo-upload', {
   acceptedFiles: '.stl', //This the extensions of files accepted. We can have <image/*, audio/*> or <.stl, .pdf>
   autoQueue: true, // Make sure the files aren't queued until manually added
   previewsContainer: "#previews", // Define the container to display the previews
-  maxFilesize: 25,  //10 MiB is here the max file upload size constraint
+  maxFilesize: 95,  //10 MiB is here the max file upload size constraint
   maxFiles: 1, //Limit to one file
   timeout: 999999,
 });

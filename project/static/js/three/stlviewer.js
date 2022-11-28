@@ -67,7 +67,7 @@ function STLViewer(elem, model) {
 
         var largestDimension = Math.max(bound_x,
             bound_y, bound_z);
-        camera.position.z = largestDimension * 1;
+        camera.position.z = largestDimension * 1.15;
 
         console.log("x: ", bound_x);
         console.log("y: ", bound_y);
