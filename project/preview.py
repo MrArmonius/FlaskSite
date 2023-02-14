@@ -14,6 +14,6 @@ def generate_preview(file_path, name):
     manager = PreviewManager(cache_path, create_folder= True)
     path_to_preview_image = manager.get_jpeg_preview(file_to_preview_path)
     
-    # Delete .stl from the filename
+    # Delete ".stl" from the filename
     new_name = name[:-4] + '.jpeg'
     os.rename(path_to_preview_image, os.path.join(current_app.config['UPLOAD_PATH'], current_user.get_id(), "template", new_name))

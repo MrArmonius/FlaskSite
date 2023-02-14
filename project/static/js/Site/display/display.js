@@ -23,5 +23,15 @@ triggerTabList.forEach(function (triggerEl) {
   });
 });
 
+const collection_price =  document.getElementsByClassName("price");
+function refresh_price() {
+  
+  for (const element_price of collection_price){
+    element_price.innerHTML = '<div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span></div>';
+  }
+}
+
+//refresh_price();
+
 
 

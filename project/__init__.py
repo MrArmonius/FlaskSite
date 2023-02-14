@@ -1,10 +1,12 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
+from flask_session import Session
 
 import os
 # init SQLAlchemy so we can use it later in our models
 db = SQLAlchemy()
+sess = Session()
 
 def create_app(test_config=None):
     app = Flask(__name__)
@@ -14,6 +16,8 @@ def create_app(test_config=None):
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     app.config['PATH_USER'] = 'static/upload/user/'
     app.config['UPLOAD_PATH'] = os.path.join('project', app.config['PATH_USER'])
+    app.config["SESSION_PERMANENT"] = False
+    app.config["SESSION_TYPE"] = "filesystem"
     
 
     db.init_app(app)
@@ -23,6 +27,8 @@ def create_app(test_config=None):
     login_manager = LoginManager()
     login_manager.login_view = 'auth.login'
     login_manager.init_app(app)
+
+    sess.init_app(app)
 
     from .model import User
 

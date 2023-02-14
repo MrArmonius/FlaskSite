@@ -1,11 +1,12 @@
 from flask import Blueprint, render_template, redirect, url_for, \
-	send_from_directory, current_app, request
+	send_from_directory, current_app, request, session
 from flask_login import login_required, current_user
 from werkzeug.utils import secure_filename
 import os
 import imghdr
 
 from .preview import generate_preview
+
 
 upload = Blueprint('upload', __name__)
 
@@ -42,8 +43,11 @@ def upload_post():
 			path = os.path.join(current_app.config['UPLOAD_PATH'], current_user.get_id(), secure_filename(f.filename))
 			f.save(path)
 			generate_preview(path, secure_filename(f.filename))
+
+			session["file_stl"] = path
+
 			return '', 202
-	return "Image incorrect", 400
+	return "Incorrect file", 400
 
 @upload.route('/upload',  methods=['DELETE'])
 @login_required
