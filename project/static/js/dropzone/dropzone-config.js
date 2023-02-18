@@ -34,11 +34,11 @@ myDropzone.on("sending", function(file) {
 });
 
 myDropzone.on("removedfile", function(file) {
-  var name = file.name;
+  var uuid = file.uuid_backend;
   var xhr = new XMLHttpRequest();
   xhr.open("DELETE", "/upload", true);
   xhr.setRequestHeader("Content-Type", "application/json");
-  xhr.send(JSON.stringify({'id': name}));
+  xhr.send(JSON.stringify({'id': uuid}));
   console.log("Succesful send request")
   if (myDropzone.files.length == 0) {
     var button_link = document.getElementById("button_to_display");
@@ -48,6 +48,7 @@ myDropzone.on("removedfile", function(file) {
 });
 
 myDropzone.on("complete", function(file) {
+  file.uuid_backend = file.xhr.responseText
   file.previewElement.querySelector("#previews .start").style.display="none";
   file.previewElement.querySelector("#previews .cancel").style.display="none";
   file.previewElement.querySelector("#previews .delete").style.display="initial";
@@ -88,7 +89,7 @@ function url_display() {
     if (!first) {
       parameters +="&";
     }
-    parameters += "file=" + file.name;
+    parameters += "file=" + file.uuid_backend;
     first = false;
   }
   console.log(parameters);

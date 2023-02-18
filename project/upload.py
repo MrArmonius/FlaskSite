@@ -4,8 +4,11 @@ from flask_login import login_required, current_user
 from werkzeug.utils import secure_filename
 import os
 import imghdr
+import uuid
 
 from .preview import generate_preview
+from . import db
+from .model import Stl
 
 
 upload = Blueprint('upload', __name__)
@@ -44,9 +47,16 @@ def upload_post():
 			f.save(path)
 			generate_preview(path, secure_filename(f.filename))
 
-			session["file_stl"] = path
+			new_uuid = str(uuid.uuid4())
 
-			return '', 202
+			# create a new stl entrance to store it
+			new_stl = Stl(id=new_uuid,userId=current_user.get_id(), filament="PLA", couleur="black", stlChemin=path)
+
+    		# add the new stl entrance
+			db.session.add(new_stl)
+			db.session.commit()
+
+			return new_uuid, 202
 	return "Incorrect file", 400
 
 @upload.route('/upload',  methods=['DELETE'])
