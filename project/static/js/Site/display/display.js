@@ -39,7 +39,7 @@ function refresh_price() {
   req.addEventListener("load", request_complete_price);
   req.addEventListener("error", request_failed_price);
   req.addEventListener("abort", request_failed_price);
-  req.open("GET", "/api_engine/"+uuid_file);
+  req.open("GET", "/api_engine/start/"+uuid_file);
   req.send();
 }
 

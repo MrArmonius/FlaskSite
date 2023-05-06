@@ -29,6 +29,15 @@ div.basket-button:hover {
     cursor: pointer;
 }
 
+.color-item-disable {
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+.color-item-selected {
+    box-shadow: 0 0 4px 2px #0d6efd;
+}
+
 .color-item:hover {
     color: #0d6efd;
 }
@@ -67,4 +76,12 @@ div.basket-button:hover {
 
 .red-tile {
     background-color: red;
+}
+
+.black-tile {
+    background-color: #101010;
+}
+
+.white-tile {
+    background-color: #eeeeee;
 }

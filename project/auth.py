@@ -28,8 +28,10 @@ def login_post():
     # if the above check passes, then we know the user has the right credentials
     login_user(user, remember=remember)
 
+    #Create directory for new users
     if not os.path.exists(os.path.join(current_app.config['UPLOAD_PATH'], current_user.get_id())):
-        os.makedirs(os.path.join(current_app.config['UPLOAD_PATH'], current_user.get_id()))
+        os.makedirs(os.path.join(current_app.config['UPLOAD_PATH'], current_user.get_id())) #directory with id 
+        os.makedirs(os.path.join(current_app.config['UPLOAD_PATH'], current_user.get_id(), "template")) #template directory
 
     return redirect(url_for('main.profile'))
     

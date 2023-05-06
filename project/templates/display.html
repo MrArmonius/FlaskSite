@@ -34,10 +34,6 @@
 						<ul class="list-group">
 							<li class="list-group-item active">Affichage</li>
 							<li class="list-group-item">Gcode</li>
-							<li class="list-group-item">test</li>
-							<li class="list-group-item">test</li>
-							<li class="list-group-item">test</li>
-							<li class="list-group-item">test</li>
 							<button type="button" onclick="resetPositionCamera()"
 								class="list-group-item list-group-item-action btn-primary-hover">Reset</button>
 						</ul>
@@ -158,9 +154,9 @@
 			<hr style="height: 3px;">
 			<!-- List group -->
 			<div class="list-group" id="materialList" role="tablist">
-				<a class="list-group-item list-group-item-action active" data-toggle="list" href="#home" role="tab">Home</a>
-				<a class="list-group-item list-group-item-action disabled" data-toggle="list" href="#profile" role="tab">Profile</a>
-				<a class="list-group-item list-group-item-action" data-toggle="list" href="#messages" role="tab">Messages</a>
+				<a class="list-group-item list-group-item-action active" data-toggle="list" href="#material" role="tab">Material</a>
+				<a class="list-group-item list-group-item-action" data-toggle="list" href="#color" role="tab">Color</a>
+				<a class="list-group-item list-group-item-action disabled" data-toggle="list" href="#messages" role="tab">Messages</a>
 				<a class="list-group-item list-group-item-action" data-toggle="list" href="#settings" role="tab">Settings</a>
 			  </div>
 		</div>
@@ -168,27 +164,32 @@
 		<div class="col-sm-9">
 			<!-- Tab panes -->
 			<div class="tab-content">
-				<div class="tab-pane active" id="home" role="tabpanel">
+				<div class="tab-pane active" id="material" role="tabpanel">
+					<div class="row pt-3 pt-md-2 mt-md-2">
+						<div class="col-sm-12">
+							<h3><b>Material</b></h3>
+							<ul class="color-list-horizontal">
+								<li class="color-item color-item-selected"><span class="tile blue-tile"></span>PLA</li>
+								<li class="color-item color-item-disable"><span class="tile black-tile"></span>PETG</li>
+								<li class="color-item color-item-disable"><span class="tile white-tile"></span>ABS</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="tab-pane" id="color" role="tabpanel">
 					<div class="row pt-3 pt-md-2 mt-md-2">
 						<div class="col-sm-12">
 							<h3><b>Colors</b></h3>
 							<ul class="color-list-horizontal">
-								<li onclick="changeColorMesh(0x248bfb)" title="Nous sommes les meilleurs du monde" class="color-item">Image Bleu<span class="tile blue-tile"></span></li>
-								<li onclick="changeColorMesh(0xff0000)" class="color-item "><span class="tile red-tile"></span>Image Rouge</li>
-								<li onclick="changeColorMesh(0xff0000)" class="color-item"><span class="tile red-tile"></span>Image Rouge</li>
-								<li onclick="changeColorMesh(0xff0000)" class="color-item"><span class="tile red-tile"></span>Image Rouge</li>
-								<li onclick="changeColorMesh(0xff0000)" class="color-item"><span class="tile red-tile"></span>Image Rouge</li>
-								<li onclick="changeColorMesh(0xff0000)" class="color-item"><span class="tile red-tile"></span>Image Rouge</li>
-								<li onclick="changeColorMesh(0xff0000)" class="color-item"><span class="tile red-tile"></span>Image Rouge</li>
-								<li onclick="changeColorMesh(0xff0000)" class="color-item"><span class="tile red-tile"></span>Image Rouge</li>
-								<li onclick="changeColorMesh(0xff0000)" class="color-item"><span class="tile red-tile"></span>Image Rouge</li>
-								<li onclick="changeColorMesh(0xff0000)" class="color-item"><span class="tile red-tile"></span>Image Rouge</li>
+								<li onclick="changeColorMesh(0x248bfb)" title="Nous sommes les meilleurs du monde" class="color-item">Bleu<span class="tile blue-tile"></span></li>
+								<li onclick="changeColorMesh(0x3e3e3e)" class="color-item "><span class="tile black-tile"></span>Noir</li>
+								<li onclick="changeColorMesh(0xeeeeee)" class="color-item"><span class="tile white-tile"></span>Blanc</li>
 							</ul>
 						</div>
 					</div>
 					
 				</div>
-				<div class="tab-pane" id="profile" role="tabpanel">...2</div>
+				
 				<div class="tab-pane" id="messages" role="tabpanel">..3.</div>
 				<div class="tab-pane" id="settings" role="tabpanel">..4.</div>
 			  </div>

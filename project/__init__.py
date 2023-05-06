@@ -28,7 +28,7 @@ def create_app(test_config=None):
     from .model import User, Stl
 
     with app.app_context():
-        Stl.__table__.drop(db.engine)
+        #Stl.__table__.drop(db.engine)
         db.create_all()
         
 
