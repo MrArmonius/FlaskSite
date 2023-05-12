@@ -57,4 +57,8 @@ def create_app(test_config=None):
     from .api_engine import api_engine as api_engine_blueprint
     app.register_blueprint(api_engine_blueprint)
 
+    # blueprint for communicate with database
+    from .api_database import api_database as api_database_blueprint
+    app.register_blueprint(api_database_blueprint)
+
     return app

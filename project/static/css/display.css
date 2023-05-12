@@ -19,7 +19,7 @@ div.basket-button:hover {
     opacity: 0.5;
 }
 
-.color-item {
+.choice-item {
     border: 0em;
     flex: 0 0 200px;
     position: relative;
@@ -29,16 +29,16 @@ div.basket-button:hover {
     cursor: pointer;
 }
 
-.color-item-disable {
+.choice-item-disable {
     opacity: 0.4;
     pointer-events: none;
 }
 
-.color-item-selected {
+.choice-item-selected {
     box-shadow: 0 0 4px 2px #0d6efd;
 }
 
-.color-item:hover {
+.choice-item:hover {
     color: #0d6efd;
 }
 
@@ -47,7 +47,7 @@ div.basket-button:hover {
     background-color: #0d6efd;
 }
 
-.color-list-horizontal {
+.choice-list-horizontal {
     display: flex;
     flex-flow: row wrap;
     list-style: none;

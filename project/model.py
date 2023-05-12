@@ -27,5 +27,6 @@ class Stl(db.Model):
     stlChemin = db.Column(db.String(180), nullable=False)
     gcodeChemin = db.Column(db.String(180), nullable=True)
     state = db.Column(db.String(20), nullable=False, server_default="Init")
+    price = db.Column(db.Integer, nullable=True)
 
 

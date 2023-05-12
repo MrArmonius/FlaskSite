@@ -35,7 +35,7 @@ function STLViewer(elem, model) {
     var scene = new THREE.Scene();
     scene.background = new THREE.Color(0xf1f1f1);
 
-    scene.add(new THREE.HemisphereLight(0xffffff, 0x080820, 1.25));
+    scene.add(new THREE.HemisphereLight(0xffffff, 0x080820, 1.5));
 
     const stlloader = new THREE.STLLoader();
 
@@ -91,22 +91,21 @@ function STLViewer(elem, model) {
 }
 
 function setDimension(x_length, y_length, z_length) {
-    var x_length_elements = document.getElementsByClassName("x_length");
-    var y_length_elements = document.getElementsByClassName("y_length");
-    var z_length_elements = document.getElementsByClassName("z_length");
-
+    const x_length_elements = document.getElementsByClassName("x_length");
+    const y_length_elements = document.getElementsByClassName("y_length");
+    const z_length_elements = document.getElementsByClassName("z_length");
 
     for (let element of x_length_elements) {
         
-        element.textContent += x_length;
+        element.innerHTML = x_length;
     }
 
     for (let element of y_length_elements) {
-        element.textContent += y_length;
+        element.innerHTML = y_length;
     }
 
     for (let element of z_length_elements) {
-        element.textContent += z_length;
+        element.innerHTML = z_length;
     }
 
 }

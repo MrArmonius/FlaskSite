@@ -64,7 +64,7 @@
 					<div class="row pt-3 pb-3 pt-md-2 pb-md-2 mt-md-2 mb-md-2">
 						<div class="col p-2">
 							<div id="card-standard" class="card border-primary card-disabled">
-								<a id="card-button-standard" onclick="card_choice(this.id)"
+								<a id="card-button-standard" onclick="card_choice(this)"
 									class="card-block btn stretched-link text-decoration-none p-0 m-0"></a>
 								<div class="card-body">
 
@@ -82,7 +82,7 @@
 						</div>
 						<div class="col p-2">
 							<div id="card-express" class="card border-success">
-								<a id="card-button-express" onclick="card_choice(this.id)"
+								<a id="card-button-express" onclick="card_choice(this)"
 									class="card-block btn stretched-link text-decoration-none p-0 m-0	"></a>
 								<div class="card-body">
 
@@ -110,17 +110,21 @@
 										<tbody>
 											<tr>
 												<th>Matière</th>
-												<td class="px-4 py-2 text-muted">Coucou</td>
+												<td class="px-4 py-2 text-muted" id="final-material">N/A</td>
+											</tr>
+											<tr>
+												<th>Couleur</th>
+												<td class="px-4 py-2 text-muted" id="final-color">N/A</td>
 											</tr>
 											<tr>
 												<th>Taille</th>
-												<td class="px-4 py-2 text-muted"><span class="x_length"></span> x <span
-														class="y_length"></span> x <span class="z_length"></span> mm
+												<td class="px-4 py-2 text-muted"><span class="x_length">N/A</span> x <span
+														class="y_length">N/A</span> x <span class="z_length">N/A</span> mm
 												</td>
 											</tr>
 											<tr>
 												<th>Prix</th>
-												<td class="px-4 py-2 text-muted">Coucou</td>
+												<td class="px-4 py-2 text-muted price" id="final-price">N/A</td>
 											</tr>
 										</tbody>
 									</table>
@@ -168,10 +172,10 @@
 					<div class="row pt-3 pt-md-2 mt-md-2">
 						<div class="col-sm-12">
 							<h3><b>Material</b></h3>
-							<ul class="color-list-horizontal">
-								<li class="color-item color-item-selected"><span class="tile blue-tile"></span>PLA</li>
-								<li class="color-item color-item-disable"><span class="tile black-tile"></span>PETG</li>
-								<li class="color-item color-item-disable"><span class="tile white-tile"></span>ABS</li>
+							<ul class="choice-list-horizontal">
+								<li onclick="selected_item(this);calculate_price()" class="choice-item choice-item-selected material-item" data-item="pla"><span class="tile blue-tile"></span>PLA</li>
+								<li onclick="selected_item(this);calculate_price()" class="choice-item material-item" data-item="petg"><span class="tile black-tile"></span>PETG</li>
+								<li onclick="selected_item(this);calculate_price()" class="choice-item choice-item-disable material-item" data-item="abs"><span class="tile white-tile"></span>ABS</li>
 							</ul>
 						</div>
 					</div>
@@ -180,10 +184,10 @@
 					<div class="row pt-3 pt-md-2 mt-md-2">
 						<div class="col-sm-12">
 							<h3><b>Colors</b></h3>
-							<ul class="color-list-horizontal">
-								<li onclick="changeColorMesh(0x248bfb)" title="Nous sommes les meilleurs du monde" class="color-item">Bleu<span class="tile blue-tile"></span></li>
-								<li onclick="changeColorMesh(0x3e3e3e)" class="color-item "><span class="tile black-tile"></span>Noir</li>
-								<li onclick="changeColorMesh(0xeeeeee)" class="color-item"><span class="tile white-tile"></span>Blanc</li>
+							<ul class="choice-list-horizontal">
+								<li onclick="selected_item(this);changeColorMesh(0x248bfb);calculate_price()" title="Nous sommes les meilleurs du monde" class="choice-item choice-item-selected color-item" data-item="blue">Bleu<span class="tile blue-tile"></span></li>
+								<li onclick="selected_item(this);changeColorMesh(0x3e3e3e);calculate_price()" class="choice-item color-item" data-item="black">Noir<span class="tile black-tile"></span></li>
+								<li onclick="selected_item(this);changeColorMesh(0xeeeeee);calculate_price()" class="choice-item color-item" data-item="white">Blanc<span class="tile white-tile"></span></li>
 							</ul>
 						</div>
 					</div>
