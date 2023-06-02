@@ -11,6 +11,7 @@ class User(UserMixin, db.Model):
 class Stl(db.Model):
     id = db.Column(db.String(36), primary_key=True) # primary keys are required by SQLAlchemy
     userId = db.Column(db.Integer, nullable=False)
+    name = db.Column(db.String(180), nullable=False)
     creation_date = db.Column(db.DateTime(timezone=True), server_default=func.now())
     filament = db.Column(db.String(12), nullable=False, server_default="PLA")
     volumeFilament = db.Column(db.Integer, nullable=True)
@@ -26,7 +27,9 @@ class Stl(db.Model):
     layerHeight = db.Column(db.Integer, nullable=True)
     stlChemin = db.Column(db.String(180), nullable=False)
     gcodeChemin = db.Column(db.String(180), nullable=True)
+    templateChemin = db.Column(db.String(180), nullable=False)
     state = db.Column(db.String(20), nullable=False, server_default="Init")
     price = db.Column(db.Integer, nullable=True)
+
 
 

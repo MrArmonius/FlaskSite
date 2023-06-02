@@ -9,6 +9,7 @@ import uuid
 from .preview import generate_preview
 from . import db
 from .model import Stl
+from .tools import check_user_owned_uuid
 
 
 upload = Blueprint('upload', __name__)
@@ -45,12 +46,13 @@ def upload_post():
 		if key.startswith('file'):
 			path = os.path.join(current_app.config['UPLOAD_PATH'], current_user.get_id(), secure_filename(f.filename))
 			f.save(path)
-			generate_preview(path, secure_filename(f.filename))
+			
 
 			new_uuid = str(uuid.uuid4())
+			templatePath = generate_preview(path, secure_filename(new_uuid+"_template.jpeg"))
 
 			# create a new stl entrance to store it
-			new_stl = Stl(id=new_uuid,userId=current_user.get_id(), filament="PLA", couleur="black", stlChemin=path)
+			new_stl = Stl(id=new_uuid, userId=current_user.get_id(), name=secure_filename(f.filename), filament="PLA", couleur="black", stlChemin=path, templateChemin=templatePath)
 
     		# add the new stl entrance
 			db.session.add(new_stl)
@@ -58,7 +60,7 @@ def upload_post():
 
 			return new_uuid, 202
 	return "Incorrect file", 400
-
+                                                                                                                                                                                   
 @upload.route('/upload',  methods=['DELETE'])
 @login_required
 def upload_delete():
@@ -66,8 +68,17 @@ def upload_delete():
 	os.remove(os.path.join(current_app.config['UPLOAD_PATH'], current_user.get_id(), secure_filename(name)))
 	return '', 202
 
-@upload.route('/thumbnail/<filename>')
+@upload.route('/thumbnail/<uuid>')
 @login_required
-def upload_f(filename):
-	filename_secure = secure_filename(filename) + '.jpeg'
-	return os.path.join(current_app.config['PATH_USER'], current_user.get_id(), "template", filename_secure)
+def upload_f(uuid):
+	stl = Stl.query.filter_by(id=uuid).first()
+
+	#Check if the object exists
+	if stl is None:
+		return '', 404
+
+	if not check_user_owned_uuid(stl):
+		return '',403
+
+	#Need to remove the 'project/' in the path
+	return stl.templateChemin[8:]

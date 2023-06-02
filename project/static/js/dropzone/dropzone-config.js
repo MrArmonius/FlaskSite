@@ -56,8 +56,9 @@ myDropzone.on("complete", function(file) {
     var button_link = document.getElementById("button_to_display");
     button_link.disabled=false;
   }
-  var name_file = file.name.substring(0, file.name.length - 4)
-  get_thumbnail_link(name_file, file)
+  //var name_file = file.name.substring(0, file.name.length - 4)
+  console.log("UUID: ", file.uuid_backend)
+  get_thumbnail_link(file.uuid_backend, file)
 });
 
 function get_thumbnail_link(file_name, file) {

@@ -7,6 +7,8 @@ import requests
 from .model import Stl
 from . import db
 
+from .tools import check_user_owned_uuid
+
 api_engine = Blueprint('api_engine', __name__)
 
 @api_engine.route('/price/<uuid>', methods=['POST'])
@@ -87,14 +89,7 @@ def get_status(stl, uuid):
 
 	return dico_job
 
-def check_user_owned_uuid(orm):
-	# Check if the uuid is owned by the correct user
-	user_log = int(current_user.get_id())
-	user_uuid = orm.userId
-	if(user_log != user_uuid):
-		return False
-	else:
-		return True
+
 
 def algo_price(stl):
 	#Return an int in function of the time and the length and the material used
