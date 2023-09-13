@@ -45,6 +45,10 @@ def create_app(test_config=None):
     from .main import main as main_blueprint
     app.register_blueprint(main_blueprint)
 
+    # blueprint for profile part
+    from .profile import profile as profile_blueprint
+    app.register_blueprint(profile_blueprint)
+
     # blueprint for dropzone page
     from .upload import upload as upload_blueprint
     app.register_blueprint(upload_blueprint)

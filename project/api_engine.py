@@ -21,6 +21,8 @@ def calculate_price(uuid):
 		return '', 400
 	if not ("material" in json_data and "color" in json_data) and len(json_data.keys()) != 2:
 		return '', 400
+	
+
 
 	stl = Stl.query.filter_by(id=uuid).first()
 
@@ -32,6 +34,7 @@ def calculate_price(uuid):
 		return '',403
 
 	#Apply transformation about color and material with colors
+	update_filament_color(json_data, stl)
 
 	if stl.state == "Init":
 		response = send_request(stl, uuid)
@@ -41,10 +44,31 @@ def calculate_price(uuid):
 		json_response = get_status(stl, uuid)
 		
 		return json_response,206
-
-	json_response = get_status(stl, uuid)
-	json_response['price'] = algo_price(stl)
-	return json_response,200
+	else:
+		# json_response = get_status(stl, uuid)
+		# print("Json response:")
+		# print(type(json_response))
+		# print(json_response)
+		json_response = {
+			'job_id': stl.id,
+			'path_file': stl.id,
+			'status': stl.state,
+			'last-seen'	: None,
+			'result': None,
+			'time': stl.time,
+			'filament_used': stl.lengthFilament,
+			'layer_height': stl.layerHeight,
+			'minx': stl.minx,
+			'miny': stl.miny,
+			'minz': stl.minz,
+			'maxx': stl.maxx,
+			'maxy': stl.maxy,
+			'maxz': stl.maxz,
+			'filament_volume': stl.volumeFilament
+					}
+		print("Dico test:\n", json_response)
+		json_response['price'] = algo_price(stl)
+		return json_response,200
 
 	
 def send_request(stl, uuid):
@@ -84,12 +108,16 @@ def get_status(stl, uuid):
 		stl.time = dico_job['time']
 		stl.layerHeight = dico_job['layer_height']
 		stl.lengthFilament = dico_job['filament_used']
+		stl.price = algo_price(stl)
 		db.session.commit()
 
 
 	return dico_job
 
-
+def update_filament_color(json_data, stl):
+	stl.filament = json_data['material']
+	stl.couleur = json_data['color']
+	db.session.commit()
 
 def algo_price(stl):
 	#Return an int in function of the time and the length and the material used

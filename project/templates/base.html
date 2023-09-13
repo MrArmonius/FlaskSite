@@ -43,7 +43,7 @@
 			<ul class="nav navbar-nav">
 				{% if current_user.is_authenticated %}
 				<li class="nav-item">
-					<a class="nav-link" href="{{ url_for('main.profile') }}">Profile</a>
+					<a class="nav-link" href="{{ url_for('profile.informations') }}">Profile</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="{{ url_for('upload.upload_index') }}">Upload</a>
@@ -58,6 +58,9 @@
 			</ul>
 			<ul class="nav navbar-nav ms-auto">
 				{% if current_user.is_authenticated %}
+				<li class="nav-item">
+					<a class="nav-link" href="#"><i class="fas fa-cart-shopping"></i> Cart</a>
+				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="{{ url_for('auth.logout') }}"><i class="fas fa-sign-in-alt"></i> Logout</a>
 				</li>
