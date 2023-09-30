@@ -33,7 +33,7 @@ def login_post():
         os.makedirs(os.path.join(current_app.config['UPLOAD_PATH'], current_user.get_id())) #directory with id 
         os.makedirs(os.path.join(current_app.config['UPLOAD_PATH'], current_user.get_id(), "template")) #template directory
 
-    return redirect(url_for('main.profile'))
+    return redirect(url_for('profile.informations'))
     
 @auth.route('/signup')
 def signup():

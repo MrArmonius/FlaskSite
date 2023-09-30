@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+<!DOCTYPE html>
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    
+    <div class="row px-0 py-3 mx-md-0 my-md-0">
+        <h1 class="text-center">My Cart <i class="fas fa-cart-shopping"></i></h1>
+    </div>
+    
+    <div class="row px-0 py-3 mx-md-0 my-md-0">
+        <div class="col-sm-8">
+            <div class="card card-topping-small" style="height: 100%;">
+                <h5 class="card-title">Your order</h5>
+                <div class="row header-section"></div>
+
+                <div class="row p-3 pt-md-2 pb-md-2 mt-md-2 mb-md-2 pt-4 border-top border-bottom " style="background-color: #f3f3f3;">
+                    <div class="col-sm-3" id="article_image_cart" >
+                        <div class="row row-padding">
+                            <div class="col-sm-12 zoom-hover text-center">
+                              <a href="display?file=0b18d480-b1c7-405e-80a9-ac3a64569418">
+                                <img src="static/upload/user/1/template/0b18d480-b1c7-405e-80a9-ac3a64569418_template.jpeg" class="img-thumbnail img-200" alt="...">
+                              </a>
+                              <div class="overlay">NAME</div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="col-sm-3" id="article_description_cart" >
+                        <div class="row">
+                            <p class="fw-bold">Description</p>
+                        </div>
+                        <div class="row">
+                            <p>Une courte description du produit pour montrer je ne sais quoi</p>
+                        </div>
+
+                    </div>
+                    <div class="col-sm-2" id="article_price_cart" >
+                        <div class="row"><p class="fw-bold">Prix</p></div>
+                        <div class="row"><p>15.50€</p></div>
+                    </div>
+                    <div class="col-sm-2" id="article_quantity_cart" >
+                        <div class="row"><p class="fw-bold"ity>Quantité</p></div>
+                        <div class="row"><p>1</p></div>
+
+                    </div>
+                    <div class="col-sm-2" id="article_total_cart" >
+                        <div class="row"><p class="fw-bold">Total</p></div>
+                        <div class="row"><p>15.50€</p></div>
+                    </div>
+                </div>
+
+                <div class="row p-3 pt-md-2 pb-md-2 mt-md-2 mb-md-2 pt-4 border-top border-bottom " style="background-color: #f3f3f3;">
+                    <div class="col-sm-3" id="article_image_cart" >
+                        <div class="row row-padding">
+                            <div class="col-sm-12 zoom-hover text-center">
+                              <a href="display?file=0b18d480-b1c7-405e-80a9-ac3a64569418">
+                                <img src="static/upload/user/1/template/0b18d480-b1c7-405e-80a9-ac3a64569418_template.jpeg" class="img-thumbnail img-200" alt="...">
+                              </a>
+                              <div class="overlay">NAME</div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="col-sm-3" id="article_description_cart" >
+                        <div class="row">
+                            <p class="fw-bold">Description</p>
+                        </div>
+                        <div class="row">
+                            <p>Une courte description du produit pour montrer je ne sais quoi</p>
+                        </div>
+
+                    </div>
+                    <div class="col-sm-2" id="article_price_cart" >
+                        <div class="row"><p class="fw-bold">Prix</p></div>
+                        <div class="row"><p>15.50€</p></div>
+                    </div>
+                    <div class="col-sm-2" id="article_quantity_cart" >
+                        <div class="row"><p class="fw-bold"ity>Quantité</p></div>
+                        <div class="row"><p>1</p></div>
+
+                    </div>
+                    <div class="col-sm-2" id="article_total_cart" >
+                        <div class="row"><p class="fw-bold">Total</p></div>
+                        <div class="row"><p>15.50€</p></div>
+                    </div>
+                </div>
+                <div class="row header-section"></div>
+                <div class="row">
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-3">
+                        <p class="fw-bold">1 items</p>
+                    </div>
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-2">
+                        <p class="fw-bold">45.00€</p>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <div class="col-sm-4">
+            <div class="card card-topping-small" style="height: 100%;"> 
+                <h5 class="card-title">Final price</h5>
+                <div class="row px-0 py-3 mx-md-0 my-md-0">
+
+                </div>
+                <div class="row px-0 py-1 mx-md-0 my-md-0">
+                    <div class="col-7"><p class="text-muted">Discount</p></div>
+                    <div class="col-5"><p class="text-end text-bold">10.00€</p></div>
+                </div>
+                <div class="row px-0 py-1 mx-md-0 my-md-0">
+                    <div class="col-7"><p class="text-muted">Frais De Ports</p></div>
+                    <div class="col-5"><p class="text-end text-bold">10.00€</p></div>
+                </div>
+                <div class="row px-0 py-1 mx-md-0 my-md-0">
+                    <div class="col-7"><p class="text-bold fs-4">Estimated Total</p></div>
+                    <div class="col-5"><p class="text-end text-bold fs-4">1000.00€</p></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="{{ url_for('static', filename='js/Site/profile/profile.js') }}"></script>
+{% endblock %}

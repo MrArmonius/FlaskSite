@@ -20,6 +20,6 @@ def display_index(): #Get the args from URL parameters for the files names. Flas
     if not check_user_owned_uuid(stl):
         return '',403
 
-    file_path = stl.stlChemin[7:]
+    
     name = stl.name
-    return render_template('display.html', ThreeD=file_path, Filename=name, Username=current_user.name)
+    return render_template('display.html', ThreeD=stl.stlChemin, Filename=name, Username=current_user.name)

@@ -11,8 +11,8 @@
     <div class="col-sm-3 mt-2">
       <div class="row row-padding">
         <div class="col-sm-12 zoom-hover text-center">
-          <a href="display?file={{ job.id }}">
-            <img src="{{ job.templateChemin}}" class="img-thumbnail img-200" alt="...">
+          <a href="{{ url_for('display.display_index', file=job.id) }}">
+            <img src="{{ url_for('static', filename=job.templateChemin) }}" class="img-thumbnail img-200" alt="...">
           </a>
           <div class="overlay">{{ job.name }}</div>
         </div>

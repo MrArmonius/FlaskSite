@@ -44,15 +44,25 @@ def upload_index():
 def upload_post():
 	for key, f in request.files.items():
 		if key.startswith('file'):
-			path = os.path.join(current_app.config['UPLOAD_PATH'], current_user.get_id(), secure_filename(f.filename))
-			f.save(path)
-			
 
 			new_uuid = str(uuid.uuid4())
+
+			path = os.path.join(current_app.config['UPLOAD_PATH'], current_user.get_id(), new_uuid+'.'+secure_filename(f.filename).split('.')[-1])
+			path_to_database = os.path.join(current_app.config['PATH_USER'], current_user.get_id(), new_uuid+'.'+secure_filename(f.filename).split('.')[-1])
+			f.save(path)
+
 			templatePath = generate_preview(path, secure_filename(new_uuid+"_template.jpeg"))
 
 			# create a new stl entrance to store it
-			new_stl = Stl(id=new_uuid, userId=current_user.get_id(), name=secure_filename(f.filename), filament="PLA", couleur="black", stlChemin=path, templateChemin=templatePath)
+			new_stl = Stl(
+				id=new_uuid,
+				userId=current_user.get_id(),
+				name=secure_filename(f.filename),
+				filament="PLA",
+				couleur="black",
+				stlChemin=path_to_database,
+				templateChemin=templatePath,
+				)
 
     		# add the new stl entrance
 			db.session.add(new_stl)
@@ -81,4 +91,4 @@ def upload_f(uuid):
 		return '',403
 
 	#Need to remove the 'project/' in the path
-	return stl.templateChemin[8:]
+	return url_for('static', filename=stl.templateChemin)

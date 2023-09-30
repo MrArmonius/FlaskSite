@@ -18,4 +18,4 @@ def generate_preview(file_path, name):
     # Delete ".stl" from the filename
     # new_name = name[:-4] + '.jpeg'
     os.rename(path_to_preview_image, os.path.join(current_app.config['UPLOAD_PATH'], current_user.get_id(), "template", name))
-    return os.path.join(current_app.config['UPLOAD_PATH'], current_user.get_id(), "template", name)
+    return os.path.join(current_app.config['PATH_USER'], current_user.get_id(), "template", name)

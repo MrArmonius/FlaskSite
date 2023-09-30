@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 
@@ -13,8 +13,8 @@ def create_app(test_config=None):
     app.config['SECRET_KEY'] = 'dev'
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    app.config['PATH_USER'] = 'static/upload/user/'
-    app.config['UPLOAD_PATH'] = os.path.join('project', app.config['PATH_USER'])
+    app.config['PATH_USER'] = 'upload/user/'
+    app.config['UPLOAD_PATH'] = os.path.join('project/static', app.config['PATH_USER'])
     
 
     db.init_app(app)
@@ -47,7 +47,7 @@ def create_app(test_config=None):
 
     # blueprint for profile part
     from .profile import profile as profile_blueprint
-    app.register_blueprint(profile_blueprint)
+    app.register_blueprint(profile_blueprint, url_prefix='/profile')
 
     # blueprint for dropzone page
     from .upload import upload as upload_blueprint
@@ -56,6 +56,10 @@ def create_app(test_config=None):
     # blueprint for visualize STL file
     from .display import display as display_blueprint
     app.register_blueprint(display_blueprint)
+
+    # blueprint for visualize your shopping cart
+    from .cart import cart as cart_blueprint
+    app.register_blueprint(cart_blueprint)
 
     # blueprint for communicate with api curaengine
     from .api_engine import api_engine as api_engine_blueprint

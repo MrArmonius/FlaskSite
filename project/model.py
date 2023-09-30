@@ -31,5 +31,11 @@ class Stl(db.Model):
     state = db.Column(db.String(20), nullable=False, server_default="Init")
     price = db.Column(db.Integer, nullable=True)
 
+class ShoppingCart(db.Model):
+    id = db.Column(db.Integer, primary_key=True) # primary keys are required by SQLAlchemy
+    userId = db.Column(db.Integer, nullable=False)
+    stlId = db.Column(db.String(36), nullable=False)
+    quantity = db.Column(db.Integer, nullable=False)
+
 
 

@@ -5,11 +5,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="./static/css/bootstrap/bootstrap.min.css">
-	<link rel="stylesheet" href="./static/css/base.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap/bootstrap.min.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
 	<link rel="shortcut icon" href="{{ url_for('static', filename='photo/fav_icon.jpg') }}">
-	<script src="./static/js/Bootstrap5.0/bootstrap.bundle.min.js"></script>
-    <script src="https://kit.fontawesome.com/4379c81596.js" crossorigin="anonymous"></script>
+	<script src="{{ url_for('static', filename='js/Bootstrap5.0/bootstrap.bundle.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='fontawesome/js/all.min.js') }}"></script>
     <title>ArmoniusWorkShop</title>
     {% block head %}
     {% endblock %}
@@ -27,7 +27,7 @@
 		<!-- BRAND -->
 		<div class="navbar-header">
 		<a class="navbar-brand" href="{{ url_for('main.index') }}">
-			<img src="/static/photo/bootstrap-logo.svg" width="40" height="30" class="d-inline-block align-top" alt="">
+			<img src="{{ url_for('static', filename='photo/bootstrap-logo.svg') }}" width="40" height="30" class="d-inline-block align-top" alt="">
 			ArmoniusWorkShop
 		</a>
 		</div>
@@ -59,7 +59,7 @@
 			<ul class="nav navbar-nav ms-auto">
 				{% if current_user.is_authenticated %}
 				<li class="nav-item">
-					<a class="nav-link" href="#"><i class="fas fa-cart-shopping"></i> Cart</a>
+					<a class="nav-link" href="{{ url_for('cart.cart_resume')}}"><i class="fas fa-cart-shopping"></i> Cart</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="{{ url_for('auth.logout') }}"><i class="fas fa-sign-in-alt"></i> Logout</a>

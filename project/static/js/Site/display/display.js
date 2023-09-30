@@ -151,5 +151,11 @@ function setup_options() {
   }
 }
 
+function add_cart() {
+  
+}
+
+
+// Setup functions
 calculate_price();
 setup_options();

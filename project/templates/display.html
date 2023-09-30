@@ -1,17 +1,17 @@
 {% extends "base.html" %}
 <!DOCTYPE html>
 {% block head %}
-<link rel="stylesheet" href="./static/css/display.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/display.css') }}">
 <script type=text/javascript>
 	window.onload=function() {
 		STLViewerEnable("stlviewer");
 	 } 
 </script>
-<script src="./static/js/three/three.min.js"></script>
-<script src="./static/js/three/WebGL.js"></script>
-<script src="./static/js/three/STLLoader.js"></script>
-<script src="./static/js/three/OrbitControls.js"></script>
-<script src="./static/js/three/stlviewer.js"></script>
+<script src="{{ url_for('static', filename='js/three/three.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/three/WebGL.js') }}"></script>
+<script src="{{ url_for('static', filename='js/three/STLLoader.js') }}"></script>
+<script src="{{ url_for('static', filename='js/three/OrbitControls.js') }}"></script>
+<script src="{{ url_for('static', filename='js/three/stlviewer.js') }}"></script>
 {% endblock %}
 
 {% block content %}
@@ -39,7 +39,7 @@
 						</ul>
 					</div>
 					<div class="col-sm-9 px-0">
-						<div class="stlviewer" data-src="{{ ThreeD }}"></div>
+						<div class="stlviewer" data-src="{{ url_for('static', filename=ThreeD) }}"></div>
 					</div>
 				</div>
 				<div class="row pt-3 pb-3 pt-md-2 pb-md-2 mt-md-2 mb-md-2">
@@ -132,14 +132,8 @@
 								<div class="card-footer bg-primary text-white text-center btn basket-button" onclick="">
 									<div class="row py-1 mx-2 justify-content-center">
 										<div class="col-md-auto">
-											<svg xmlns="http://www.w3.org/2000/svg" width="1.75em" height="1.75em"
-												fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16">
-												<path
-													d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-											</svg>
-										</div>
-										<div class="col-md-auto">
-											<b style="font-size: 1.5em;">Panier</b>
+											
+											<b style="font-size: 1.5em;"><i class="fas fa-cart-shopping"></i>  Ajouter au Panier</b>
 										</div>
 									</div>
 								</div>
@@ -202,6 +196,6 @@
 </div>
 
 
-<script src="./static/js/Site/display/display.js"></script>
+<script src="{{ url_for('static', filename='js/Site/display/display.js') }}"></script>
 
 {% endblock %}

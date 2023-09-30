@@ -3,6 +3,7 @@ from flask import Blueprint, render_template, redirect, url_for, \
 from flask_login import login_required, current_user
 
 import requests
+import os
 
 from .model import Stl
 from . import db
@@ -77,7 +78,7 @@ def send_request(stl, uuid):
 	url = 'http://127.0.0.1:3250/jobs'
 	data = {'data': '{"job_id":"'+uuid+'"}'}
 
-	file_stl = {'file': open(stl.stlChemin ,'rb')}
+	file_stl = {'file': open('project/static/'+stl.stlChemin ,'rb')}
 	headers = {'Accept-Encoding': ''}
 
 	response = requests.post(url, files = file_stl, data = data)

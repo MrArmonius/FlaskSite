@@ -14,13 +14,9 @@ def jobs():
     #Get all uuid link to this user id
     
     array_jobs = Stl.query.filter_by(userId=current_user.get_id()).all()
-    
-    for job in array_jobs:
-        job.templateChemin = job.templateChemin[8:]
-    print(array_jobs)
     return render_template('jobs.html', name=current_user.name, jobs=array_jobs)
 
-@profile.route('/informations')
+@profile.route('/information')
 @login_required
 def informations():
     return render_template('informations_profile.html', name=current_user.name, userObject=current_user)
